@@ -1,8 +1,37 @@
 ---
-title: "Analysis 1"
+title: "A Beautiful Graphic"
 author: "Shania Leubin"
 format: html
+execute:
+  echo: false
 ---
 
-Shania Leubin is a data maestro! 
+```{r}
+#| message: false
+library(tidyverse)
+```
+
+```{r}
+#| fig-width: 8
+#| fig-height: 5
+#| fig-cap: "Fuel efficiency by engine size and vehicle class in the mpg dataset."
+
+ggplot(mpg, aes(displ, hwy, color = class)) +
+  geom_point(size = 2.8, alpha = 0.85) +
+  geom_smooth(method = "lm", se = FALSE, linewidth = 0.8, color = "grey35") +
+  labs(
+    title = "Fuel Efficiency vs. Engine Size",
+    subtitle = "A look at how vehicle class shapes economy",
+    x = "Engine displacement (L)",
+    y = "Highway fuel economy (mpg)",
+    color = "Vehicle class"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16),
+    plot.subtitle = element_text(size = 11, color = "grey30"),
+    legend.title = element_text(face = "bold"),
+    panel.grid.minor = element_blank()
+  )
+```
 
